@@ -52,30 +52,20 @@ str(ufo_data)
 # Using the mice and VIM libraries
 # display the number of missing variables in the UFO data frame
 # How many records have no missing data content?
-sum(!is.na(ufo_data))
+# 69304
 # How many variables have the datetime records missing?
-sum(is.na(ufo_data$datetime))
+# 518
 # Which variable has the largest number of missing data points?
+# X <- useless so it is country
 # What percent of data is available without missing data points?
-sum(!is.na(ufo_data)) * 100 / prod(dim(ufo_data))
-
-sum(complete.cases(ufo_data))
-
-sum(is.na(ufo_data$longitude))
-
-ufo_data[!is.na(ufo_data$X),]
-sum(is.na(ufo_data$X))
+# 77.979 percent
 
 library(mice)
-md.pattern(ufo_data, rotate.names = TRUE)
+md.pattern(ufo_data)
 
 library(VIM)
 missing_values <- aggr(ufo_data, prop = FALSE, number = TRUE)
 summary(missing_values)
-
-sum(missing_values[["missings"]][["Count"]])
-
-sum(!is.na(ufo_data))
 
 # Q7
 # Decide what to do with your missing data. Then apply your suggestion. 
@@ -109,13 +99,3 @@ nrow(ufo_gb_disk)
 # Q10
 # Using the write.csv() command
 write.csv(ufo_gb_disk, file = "ufo_gb_disk.csv")
-
-
-new_data <- na.omit(ufo_data)
-new_data
-
-colSums(is.na(ufo_data))
-(sum(is.na(ufo_data))/prod(dim(ufo_data))) *100
-prod(dim(ufo_data))
-dim(ufo_data)
-sum(is.na(ufo_data))
